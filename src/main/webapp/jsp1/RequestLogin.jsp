@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2 align = "center">로그인 페이지 </h2>
 	<div align = "center">
+	<h2 >로그인 페이지 </h2>
 		<form action= "RequestLoginProc.jsp" method="post">
 		<table width="400" border="1">
 			<tr height = "60">
