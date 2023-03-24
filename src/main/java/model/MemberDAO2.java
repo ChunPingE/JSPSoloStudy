@@ -3,16 +3,13 @@ package model;
 import java.sql.*;
 import java.util.*;
 
-import javax.naming.*;
-import javax.sql.*;
-
 //데이터 베이스에 연결하고 SELECT INSERT UPDATE DELETE작업을 해주는 클래스
-public class MemberDAO {
+public class MemberDAO2 {
 
 	// 오라클에 접속하는 소스
-//	String dbID = "chun"; // 접속아이디 비밀번호
-//	String dbPwd = "1234";
-//	String dbURL = "jdbc:mysql://localhost:3306/jspshop"; // 접속url
+	String dbID = "chun"; // 접속아이디 비밀번호
+	String dbPwd = "1234";
+	String dbURL = "jdbc:mysql://localhost:3306/jspshop"; // 접속url
 
 	Connection con; // DB에 연결하는 객체
 	PreparedStatement pstmt; // 데이터베이스에서 쿼리 실행시켜주는 객체
@@ -20,29 +17,12 @@ public class MemberDAO {
 
 	// DB접근할 수 있도록 도와주는 메소드 생성
 	public void getCon() {
-		//커넥션 풀을 사용하여 데이터베이스에 접근
-		try {
-			//외부에서 데이터를 읽어들이기 때문에
-			Context initctx = new InitialContext();
-			//톰캣 서버에 정보를 담아 놓은 곳으로 이동
-			//자바 환경설정 부분에 넣기
-			Context envctx = (Context) initctx.lookup("java:comp/env");
-			//데이터 소스 객체를 선언 지정한 이름 넣기
-			DataSource ds = (DataSource) envctx.lookup("jdbc/pool");
-			//데이터 소스 기준으로 커넥션을 연결해주시오
-			con = ds.getConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		/*
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(dbURL, dbID, dbPwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
 	}
 
 	// 데이터 베이스에 한사람의 회원정보를 저장해주는 메소드
