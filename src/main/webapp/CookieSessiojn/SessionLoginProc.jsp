@@ -19,12 +19,10 @@
 		session.setAttribute("id", id);
 		session.setAttribute("pass", pass);
 		
-		session.setMaxInactiveInterval(60);
+		session.setMaxInactiveInterval(60*2); //2분간 아이디 유지
+		
+		response.sendRedirect("SessionMain.jsp");
 	%>
-	
-	<h2>당신의 아이디는 <%=id %> 입니다.</h2>
-	
-	<a href="SessionLoginProc2.jsp">다음페이지로 이동</a>
 
 </body>
 </html>
