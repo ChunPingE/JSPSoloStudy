@@ -15,7 +15,6 @@ table {
 <body>
 	<div align="center">
 		<h2>게시글 쓰기</h2>
-		
 		<form action="BoardWriteProc.jsp" method="post">
 			<table border="1">
 				<tr height="40">
@@ -35,7 +34,7 @@ table {
 				
 				<tr height="40">
 					<td align="center" width="150px">비밀번호</td>
-					<td width="450px"><input type="password" name="writer" size="60"/> </td>
+					<td width="450px"><input type="password" name="password" size="60"/> </td>
 				</tr>
 				
 				<tr height="40">
