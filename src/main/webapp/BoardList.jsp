@@ -40,7 +40,18 @@ table {
 			%>		
 				<tr height="40">
 					<td align="center" width="50px"> <%= i + 1 %> </td>
-					<td align="left" width="320px"> <a href="BoardInfo.jsp?num=<%= bean.getNum() %>"><%= bean.getSubject() %></a></td>
+					<td align="left" width="320px"> <a href="BoardInfo.jsp?num=<%= bean.getNum() %>" style="text-decoration:none">
+					<%
+						if(bean.getRe_step() > 1){
+							for (int j = 0; j < (bean.getRe_step()-1) * 5; j++){
+					%>
+					&nbsp;
+					<%		
+							}
+						}
+					%>
+					
+					<%= bean.getSubject() %></a></td>
 					<td align="center" width="100px"> <%= bean.getWriter() %> </td>
 					<td align="center" width="150px"> <%= bean.getReg_date() %> </td>
 					<td align="center" width="80px"> <%=bean.getReadcount() %> </td>

@@ -73,7 +73,7 @@ public class BoardDAO {
 		getCon();
 
 		try {
-			String sql = "SELECT * FROM BOARD ORDER BY REF DESC, RE_STEP ASC, RE_LEVEL ASC";
+			String sql = "SELECT * FROM BOARD ORDER BY REF DESC, RE_STEP ASC";
 
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -93,7 +93,7 @@ public class BoardDAO {
 
 				list.add(bean);
 			}
-			
+
 			con.close();
 
 		} catch (Exception e) {
@@ -101,23 +101,23 @@ public class BoardDAO {
 		}
 		return list;
 	}
-	
-	//하나의 게시글을 리턴하는 메소드
+
+	// BoardInfo 하나의 게시글을 리턴하는 메소드
 	public BoardBean getOneBoard(int num) {
 		BoardBean bean = new BoardBean();
 		getCon();
-		
+
 		try {
-			//조회수 증가 쿼리
+			// 조회수 증가 쿼리
 			String readSql = "UPDATE BOARD SET READCOUNT = READCOUNT+1 WHERE NUM = ?";
 			pstmt = con.prepareStatement(readSql);
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
-			
+
 			String sql = "SELECT * FROM BOARD WHERE NUM = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			
+
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				bean.setNum(rs.getInt(1));
@@ -132,11 +132,120 @@ public class BoardDAO {
 				bean.setReadcount(rs.getInt(10));
 				bean.setContent(rs.getString(11));
 			}
-			
+
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return bean;
+	}
+
+	// 답변글이 저장되는 메소드
+	public void reWriteBoard(BoardBean bean) {
+		// 부모 글 그룹과 글레벨 글 스탭을 읽어들임
+		int ref = bean.getRef();
+		int re_step = bean.getRe_step();
+		int re_level = bean.getRe_level();
+
+		getCon();
+
+		try {
+			/////// 핵심코드////////
+			// 부모 글보다 큰 re_level 의 값을 전부 1씩 증가
+			String levelsql = "UPDATE BOARD SET RE_LEVEL = RE_LEVEL+1 WHERE REF=? AND RE_LEVEL > ?";
+
+			pstmt = con.prepareStatement(levelsql);
+			pstmt.setInt(1, ref); // 부모 1
+			pstmt.setInt(2, re_level); // 부모 1보다 큰거
+			pstmt.executeUpdate();
+
+			// 답변글 데이터를 저장
+			String sql = "INSERT INTO BOARD(WRITER, EMAIL, SUBJECT, PASSWORD, REG_DATE, REF, RE_STEP, RE_LEVEL, READCOUNT, CONTENT)"
+					+ " VALUES(?, ?, ?, ?, NOW(), ?, ?, ?, 0, ?)";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getWriter());
+			pstmt.setString(2, bean.getEmail());
+			pstmt.setString(3, bean.getSubject());
+			pstmt.setString(4, bean.getPassword());
+			pstmt.setInt(5, ref);
+			pstmt.setInt(6, re_step + 1);
+			pstmt.setInt(7, re_level + 1);
+			pstmt.setString(8, bean.getContent());
+			pstmt.executeUpdate();
+
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Boardupdate용 글 가져오기
+	public BoardBean getOneUpdateBoard(int num) {
+		BoardBean bean = new BoardBean();
+		getCon();
+
+		try {
+			String sql = "SELECT * FROM BOARD WHERE NUM = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean.setNum(rs.getInt(1));
+				bean.setWriter(rs.getString(2));
+				bean.setEmail(rs.getString(3));
+				bean.setSubject(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setReg_date(rs.getDate(6).toString());
+				bean.setRef(rs.getInt(7));
+				bean.setRe_step(rs.getInt(8));
+				bean.setRe_level(rs.getInt(9));
+				bean.setReadcount(rs.getInt(10));
+				bean.setContent(rs.getString(11));
+			}
+
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
+
+	// upsate와 delete시 필요한 패스워드 값을 리턴해주는 메소드
+	public String getPass(int num) {
+		String pass = "";
+
+		getCon();
+		try {
+			String sql = "SELECT PASSWORD FROM BOARD WHERE NUM = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				pass = rs.getString(1);
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pass;
+	}
+	
+	public void updateBoard(BoardBean bean) {
+		getCon();
+		
+		try {
+			String sql = "UPDATE BOARD SET SUBJECT=?, CONTENT=? WHERE NUM = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getSubject());
+			pstmt.setString(2, bean.getContent());
+			pstmt.setInt(3, bean.getNum());
+			
+			pstmt.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

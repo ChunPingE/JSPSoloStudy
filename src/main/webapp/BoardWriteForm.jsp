@@ -9,7 +9,6 @@ table {
    width: 600px;
    background-color: skyblue;
 }
-
 </style>
 </head>
 <body>

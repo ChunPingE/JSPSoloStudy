@@ -57,7 +57,7 @@ table {
 			</tr>
 			
 			<tr height="40">
-				<td align="center" colspan="45">
+				<td align="center" colspan="4">
 					<input type="button" value="답글쓰기" onclick="location.href='BoradReWriteForm.jsp?num=<%= bean.getNum() %>&ref=<%= bean.getRef()%>&re_step=<%= bean.getRe_step()%>&re_level=<%= bean.getRe_level()%>'"/>
 					<input type="button" value="수정하기" onclick="location.href='BoardUpdateForm.jsp?num=<%= bean.getNum() %>'"/>
 					<input type="button" value="삭제하기" onclick="location.href='BoardDeleteForm.jsp?num=<%= bean.getNum() %>'"/>
