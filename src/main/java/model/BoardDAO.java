@@ -66,16 +66,18 @@ public class BoardDAO {
 	}
 
 	// 모든 게시글을 리턴해주는 메소드 작성
-	public List<BoardBean> getAllBoard() {
+	public List<BoardBean> getAllBoard(int start, int end) {
 		// 리턴할 객체 선언
 		List<BoardBean> list = Collections.synchronizedList(new ArrayList<>());
 
 		getCon();
 
 		try {
-			String sql = "SELECT * FROM BOARD ORDER BY REF DESC, RE_STEP ASC";
+			String sql = "SELECT * FROM BOARD ORDER BY REF DESC, RE_STEP ASC limit ?, ?";
 
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start - 1);
+			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BoardBean bean = new BoardBean();
@@ -231,21 +233,54 @@ public class BoardDAO {
 		}
 		return pass;
 	}
-	
+
 	public void updateBoard(BoardBean bean) {
 		getCon();
-		
+
 		try {
 			String sql = "UPDATE BOARD SET SUBJECT=?, CONTENT=? WHERE NUM = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getSubject());
 			pstmt.setString(2, bean.getContent());
 			pstmt.setInt(3, bean.getNum());
-			
+
 			pstmt.executeUpdate();
 			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	// 하나의 게시글 삭제
+	public void deleteBoard(int num) {
+		getCon();
+
+		try {
+			String sql = "DELETE FROM BOARD WHERE NUM = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getAllCount() {
+		getCon();
+		int count = 0;
+		try {
+			String sql = "SELECT COUNT(NUM) COUNT FROM BOARD";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }
