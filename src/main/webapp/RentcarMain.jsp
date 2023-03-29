@@ -13,7 +13,7 @@ table{
 </head>
 <body>
 	<%
-		String center = request.getParameter("Center");
+		String center = request.getParameter("center");
 		//처음 실행시에는 center값이 넘어오지 않기에 null처리
 		if (center == null){
 			center = "Center.jsp";

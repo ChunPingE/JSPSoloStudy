@@ -39,7 +39,7 @@ a {
 			
 			<tr height="50">
 				<td align="center" width="200" bgcolor="red">
-					<font size="5"><a href="#">예약하기</a></font>
+					<font size="5"><a href="RentcarMain.jsp?center=CarReserveMain.jsp">예약하기</a></font>
 				</td>
 				
 				<td align="center" width="200" bgcolor="red">
