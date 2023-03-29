@@ -22,13 +22,19 @@ table{
 	%>
 	<div align="center">
 		<table>
+			<tr height="100">
+				<td align="center" colspan="3">
+					<font size="6" color="gray">최신형 자동차</font>
+				</td>
+			</tr>
+		
 			<tr height = "240">
 			<%
 				for (int i =0 ; i < list.size(); i++){
 					CarListBean bean = list.get(i);
 			%>		
 				<td width="333" align="center">
-					<a href="CarReserveinfo.jsp?no=<%=bean.getNo()%>">
+					<a href="RentcarMain.jsp?center=CarReserveInfo.jsp?no=<%=bean.getNo()%>">
 						<img src="img/<%=bean.getImg() %>"  width="300" height="200" alt="" />
 					</a><p>
 					차량명 : <%= bean.getName() %>
@@ -43,7 +49,7 @@ table{
 		<hr color="red" size="3"/>
 		<p>
 			<font size="4" color="black"> 차량검색하기 </font> <br /><br /><br />
-			<form action="CarCategoryList.jsp" method="post">
+			<form action="RentcarMain.jsp?center=CarCategoryList.jsp" method="post">
 				<font size="3" color="black"> <b>차량검색하기</b></font> &nbsp;&nbsp;
 				<select name="category">
 					<option value="1">소형</option>
@@ -51,7 +57,7 @@ table{
 					<option value="3">대형</option>
 				</select> &nbsp;&nbsp;
 				<input type="submit"  value="검색"/> &nbsp;&nbsp;
-				<button type="button" onclick="location.href='CarAllList.jsp'">전체 검색</button>
+				<button type="button" onclick="location.href='RentcarMain.jsp?center=CarAllList.jsp'">전체 검색</button>
 			</form>
 	</div>
 	

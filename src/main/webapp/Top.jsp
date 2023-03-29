@@ -30,7 +30,7 @@ a {
 		<table>
 			<tr height="70">
 				<td colspan="4">
-					<img src="img/RENT.png"  height="65"/>
+					<a href="RentcarMain.jsp"><img src="img/RENT.png"  height="65"/></a>
 				</td>
 				<td width="200px" align="center">
 					<%= id %> 님 반갑습니다.
