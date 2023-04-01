@@ -89,8 +89,11 @@
 				</tr>
 				
 				<tr>
-					<td colspan="2" align="center"> 베이비시트 적용 </td>
-					<td><input type="submit" value="차량예약하기" /></td>
+					<td colspan="2" align="center">
+						<input type="hidden" name="no" value="<%=no%>"/>
+						<input type="hidden" name="qty" value="<%=qty%>"/>
+						<input type="submit" value="차량예약하기" />
+					</td>
 				</tr>
 			</table>
 		</form>

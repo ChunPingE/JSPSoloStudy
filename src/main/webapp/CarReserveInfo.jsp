@@ -48,7 +48,6 @@ table {
 						<img src="img/<%=bean.getImg() %>" width="450" />
 						<td width="250" align="center"> 차량이름 </td>
 					<td width="250" align="center"> <%=bean.getName() %> </td>
-					</td>
 				</tr>
 				
 				<tr>

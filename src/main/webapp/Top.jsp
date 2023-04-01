@@ -33,7 +33,20 @@ a {
 					<a href="RentcarMain.jsp"><img src="img/RENT.png"  height="65"/></a>
 				</td>
 				<td width="200px" align="center">
-					<%= id %> 님 반갑습니다.
+					<%= id %> 님
+				<%
+					if (id.equals("GUEST")){
+				%>	
+					<button onclick="location.href='RentcarMain.jsp?center=MemberLogin.jsp'">로그인</button>
+				<%	
+					} else {
+				%>	
+					<button onclick="location.href='MemberLogout.jsp'">로그아웃</button>
+				<%	
+					}
+				%>	
+				
+				
 				</td>
 			</tr>
 			
@@ -43,7 +56,7 @@ a {
 				</td>
 				
 				<td align="center" width="200" bgcolor="red">
-					<font size="5"><a href="#"> 예약확인 </a></font>
+					<font size="5"><a href="RentcarMain.jsp?center=CarReserveView.jsp"> 예약확인 </a></font>
 				</td>
 				
 				<td align="center" width="200" bgcolor="red">
