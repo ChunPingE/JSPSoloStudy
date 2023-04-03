@@ -35,5 +35,4 @@ public class MemberJoinProc2 extends HttpServlet {
 		RequestDispatcher ds = request.getRequestDispatcher("MemberView.jsp");
 		ds.forward(request, response);
 	}
-
 }
