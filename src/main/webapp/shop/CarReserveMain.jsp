@@ -1,4 +1,4 @@
-<%@page import="db.CarListBean"%>
+<%@page import="db.CarListBean"%> 
 <%@page import="java.util.List"%>
 <%@page import="db.RentcarDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>

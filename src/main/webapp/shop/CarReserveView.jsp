@@ -1,4 +1,4 @@
-<%@page import="db.CarViewBean"%>
+<%@page import="db.CarViewBean"%> 
 <%@page import="db.CarReserveBean"%>
 <%@page import="java.util.List"%>
 <%@page import="db.RentcarDAO"%>

@@ -1,4 +1,4 @@
-<%@page import="db.CarListBean"%>
+<%@page import="db.CarListBean"%> 
 <%@page import="db.RentcarDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
