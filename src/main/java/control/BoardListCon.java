@@ -57,7 +57,14 @@ public class BoardListCon extends HttpServlet {
 		//화면 넘버링
 		number = count - (currentPage - 1) * pageSize;
 		
-		//////////////////////////////////
-		//request객체에 담기 
+		//////////// BoardList.jsp객체 쪽으로 request객체에 담아서 넘겨줌
+		request.setAttribute("list", list);
+		request.setAttribute("number", number);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("count", count);
+		request.setAttribute("currentPage", currentPage);
+		
+		RequestDispatcher dis = request.getRequestDispatcher("BoardList.jsp");
+		dis.forward(request, response);
 	}
 }
