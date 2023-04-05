@@ -16,6 +16,18 @@ table {
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${msg == '1'}">
+		<script type="text/javascript">
+			alert("수정이 완료되었습니다.");
+		</script>
+	</c:if>
+	
+	<c:if test="${msg == '2'}">
+		<script type="text/javascript">
+			alert("비밀번호를 확인해주세요");
+		</script>
+	</c:if>
+	
 	<div align="center">
 		<h2>전체 게시글 보기</h2>
 		<table border="1">
@@ -44,7 +56,7 @@ table {
 							&nbsp;
 							</c:forEach>
 						</c:if>
-						<a href="BoardInfoCon.do?num=${bean.num }">${bean.subject }</a>
+						<a href="BoardInfoCon.do?num=${bean.num}">${bean.subject }</a>
 					</td>
 					<td align="center" width="100"> ${bean.writer } </td>
 					<td align="center" width="150"> ${bean.reg_date } </td>

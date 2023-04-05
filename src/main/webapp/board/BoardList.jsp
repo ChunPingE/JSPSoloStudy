@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,6 @@ table {
 <title>Insert title here</title>
 </head>
 <body>
-	
 	<div align="center">
 		<h2>전체 게시글 보기</h2>
 		<!-- 게시글 보기에 카운터링을 설정하기 위한 변수들을 선언 -->
