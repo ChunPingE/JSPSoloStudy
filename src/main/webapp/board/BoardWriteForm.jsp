@@ -14,7 +14,7 @@ table {
 <body>
 	<div align="center">
 		<h2>게시글 쓰기</h2>
-		<form action="BoardWriteProc.jsp" method="post">
+		<form action="BoardWriteProcCon.do" method="post">
 			<table border="1">
 				<tr height="40">
 					<td align="center" width="150px">작성자</td>
@@ -45,7 +45,7 @@ table {
 					<td align="center" colspan="2">
 						<input type="submit" value="글쓰기"> &nbsp;&nbsp;
 						<input type="reset" value="다시작성"> &nbsp;&nbsp;
-						<button onclick="location.href='BoardList.jsp'">전체 글 보기</button>
+						<button type="button" onclick="location.href='BoardListCon.do'">전체 글 보기</button>
 					</td>
 				</tr>
 			</table>
